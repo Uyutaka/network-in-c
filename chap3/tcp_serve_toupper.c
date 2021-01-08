@@ -14,7 +14,7 @@ int main() {
   getaddrinfo(0, "8080", &hints, &bind_address);
 
   printf("Creating socket...\n");
-  SOCKET socket_listen;
+  int socket_listen;
   socket_listen = socket(bind_address->ai_family, bind_address->ai_socktype,
                          bind_address->ai_protocol);
   if (socket_listen < 0) {
@@ -38,7 +38,7 @@ int main() {
   fd_set master;
   FD_ZERO(&master);
   FD_SET(socket_listen, &master);
-  SOCKET max_socket = socket_listen;
+  int max_socket = socket_listen;
 
   printf("Waiting for connections...\n");
   while (1) {
@@ -49,14 +49,13 @@ int main() {
       return 1;
     }
 
-    SOCKET i;
-    for (i = 1; i <= max_socket; ++i) {
+    for (int i = 1; i <= max_socket; ++i) {
       if (FD_ISSET(i, &reads)) {
         // Handle socket
         if (i == socket_listen) {
           struct sockaddr_storage client_address;
           socklen_t client_len = sizeof(client_address);
-          SOCKET socket_client = accept(
+          int socket_client = accept(
               socket_listen, (struct sockaddr *)&client_address, &client_len);
           if (socket_client < 0) {
             fprintf(stderr, "accept() failed. (%d)\n", errno);

@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
   printf("%s %s\n", address_buffer, service_buffer);
 
   printf("Creating socket...\n");
-  SOCKET socket_peer;
+  int socket_peer;
   socket_peer = socket(peer_address->ai_family, peer_address->ai_socktype,
                        peer_address->ai_protocol);
   if (socket_peer < 0) {
