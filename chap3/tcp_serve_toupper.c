@@ -1,6 +1,6 @@
 #include <ctype.h>
 
-#include "chap3.c"
+#include "chap3.h"
 
 int main() {
   printf("Configuring local address...\n");

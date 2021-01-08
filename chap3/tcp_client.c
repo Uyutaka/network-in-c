@@ -2,7 +2,7 @@
 // https://github.com/codeplea/Hands-On-Network-Programming-with-C/blob/master/chap03/tcp_client.c
 // Explaination
 // https://learning.oreilly.com/library/view/hands-on-network-programming/9781789349863/691fb6f0-705f-4e3f-8657-7e8bd2e39e1f.xhtml
-#include "chap3.c"
+#include "chap3.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 3) {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
   printf("%s %s\n", address_buffer, service_buffer);
 
   printf("Creating socket...\n");
-  SOCKET socket_peer;
+  int socket_peer;
   socket_peer = socket(peer_address->ai_family, peer_address->ai_socktype,
                        peer_address->ai_protocol);
   if (socket_peer < 0) {
